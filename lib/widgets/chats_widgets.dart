@@ -25,95 +25,104 @@ class UserChatOverviewWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final TextTheme _txtTheme = Theme.of(context).textTheme;
-    return InkWell(
-      onTap: (() {}),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-                child: ClipRRect(
-                    borderRadius: BorderRadius.circular(30),
-                    child: Image.network(profilePicUrl,
-                        alignment: Alignment.topCenter,
-                        height: 60,
-                        width: 60,
-                        fit: BoxFit.cover)),
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Text(
-                        userName,
-                        style: (isUnread)
-                            ? _txtTheme.bodyMedium!
-                                .copyWith(color: Colors.black)
-                            : _txtTheme.bodyMedium,
-                      ),
-                      const SizedBox(width: 10),
-                      if (isVerified)
-                        const Icon(Icons.verified,
-                            size: 16, color: Color(0xff4D72F4)),
-                    ],
-                  ),
-                  (isTyping)
-                      ? Text(
-                          'Typing...',
-                          style: _txtTheme.bodySmall!.copyWith(
-                              color: kThemeColor, fontStyle: FontStyle.italic),
-                        )
-                      : Text(
-                          lastMssg,
-                          style: (isUnread)
-                              ? _txtTheme.bodySmall!
-                                  .copyWith(color: const Color(0xff050505))
-                              : _txtTheme.bodySmall,
-                        ),
-                ],
-              ),
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.only(right: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
+    return Column(children: [
+      InkWell(
+        onTap: (() {}),
+        splashColor: Colors.orange,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(
-                  DateFormat.Hm().format(DateTime.now()).toString(),
-                  style: (isUnread)
-                      ? _txtTheme.labelSmall
-                      : _txtTheme.labelSmall!
-                          .copyWith(color: const Color(0xff818181)),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                  child: ClipRRect(
+                      borderRadius: BorderRadius.circular(30),
+                      child: Image.network(profilePicUrl,
+                          alignment: Alignment.topCenter,
+                          height: 60,
+                          width: 60,
+                          fit: BoxFit.cover)),
                 ),
-                (isUnread)
-                    ? CircleAvatar(
-                        radius: 8,
-                        backgroundColor: const Color(0xffFF5F8F),
-                        child: (unReadMssg > 9)
-                            ? Text(
-                                '9+',
-                                style: _txtTheme.labelSmall!
-                                    .copyWith(color: Colors.white),
-                              )
-                            : Text(
-                                unReadMssg.toString(),
-                                style: _txtTheme.labelSmall!
-                                    .copyWith(color: Colors.white),
-                              ),
-                      )
-                    : const SizedBox(height: 16),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Text(
+                          userName,
+                          style: (isUnread)
+                              ? _txtTheme.bodyMedium!
+                                  .copyWith(color: Colors.black)
+                              : _txtTheme.bodyMedium,
+                        ),
+                        const SizedBox(width: 10),
+                        if (isVerified)
+                          const Icon(Icons.verified,
+                              size: 16, color: Color(0xff4D72F4)),
+                      ],
+                    ),
+                    (isTyping)
+                        ? Text(
+                            'Typing...',
+                            style: _txtTheme.bodySmall!.copyWith(
+                                color: kThemeColor,
+                                fontStyle: FontStyle.italic),
+                          )
+                        : Text(
+                            lastMssg,
+                            style: (isUnread)
+                                ? _txtTheme.bodySmall!
+                                    .copyWith(color: const Color(0xff050505))
+                                : _txtTheme.bodySmall,
+                          ),
+                  ],
+                ),
               ],
             ),
-          ),
-        ],
+            Padding(
+              padding: const EdgeInsets.only(right: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text(
+                    DateFormat.Hm().format(DateTime.now()).toString(),
+                    style: (isUnread)
+                        ? _txtTheme.labelSmall
+                        : _txtTheme.labelSmall!
+                            .copyWith(color: const Color(0xff818181)),
+                  ),
+                  (isUnread)
+                      ? CircleAvatar(
+                          radius: 8,
+                          backgroundColor: const Color(0xffFF5F8F),
+                          child: (unReadMssg > 9)
+                              ? Text(
+                                  '9+',
+                                  style: _txtTheme.labelSmall!
+                                      .copyWith(color: Colors.white),
+                                )
+                              : Text(
+                                  unReadMssg.toString(),
+                                  style: _txtTheme.labelSmall!
+                                      .copyWith(color: Colors.white),
+                                ),
+                        )
+                      : const SizedBox(height: 16),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
-    );
+      Container(
+        height: 1.5,
+        width: MediaQuery.of(context).size.width - 50,
+        color: const Color(0xffFFF6FA),
+      ),
+    ]);
   }
 }
 

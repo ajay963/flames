@@ -41,6 +41,7 @@ class MyApp extends StatelessWidget {
                     onTap: (value) => navController.changeIndex(idx: value),
                     currentIndex: navController.getCurrIndex,
                     elevation: 12,
+                    backgroundColor: Colors.white,
                     items: [
                       BottomNavigationBarItem(
                         icon: Icon(
