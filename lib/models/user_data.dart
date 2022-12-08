@@ -48,6 +48,12 @@ class UserChatData {
   ];
   List<FriendsProfiles> friendsProfileList = [
     FriendsProfiles(
+        userName: 'likes',
+        userPicUrl: image1Url5,
+        isVerified: false,
+        likes: 21,
+        isLikeCard: true),
+    FriendsProfiles(
         userName: 'jeNNy',
         userPicUrl: image1Url3,
         isVerified: false,

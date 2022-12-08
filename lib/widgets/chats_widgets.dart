@@ -1,5 +1,9 @@
+import 'dart:ui';
+
+import 'package:flames/models/user_data.dart';
 import 'package:flames/themes.dart';
 import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:intl/intl.dart';
 
 class UserChatOverviewWidget extends StatelessWidget {
@@ -159,13 +163,48 @@ class RecentUserCards extends StatelessWidget {
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(12),
-                    child: Image.network(
-                      userPicUrl,
-                      alignment: Alignment.topCenter,
-                      fit: BoxFit.cover,
-                      height: 100,
-                      width: 85,
-                    ),
+                    child: (isLikeCard)
+                        ? Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              ImageFiltered(
+                                imageFilter:
+                                    ImageFilter.blur(sigmaX: 4, sigmaY: 4),
+                                child: Image.network(
+                                  userPicUrl,
+                                  alignment: Alignment.topCenter,
+                                  fit: BoxFit.cover,
+                                  height: 100,
+                                  width: 85,
+                                ),
+                              ),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  const Icon(
+                                    Iconsax.heart5,
+                                    size: 25,
+                                    color: Colors.white,
+                                  ),
+                                  const SizedBox(height: 5),
+                                  Text(
+                                    likes.toString(),
+                                    style: _txtTheme.bodyMedium!.copyWith(
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.white),
+                                  )
+                                ],
+                              ),
+                            ],
+                          )
+                        : Image.network(
+                            userPicUrl,
+                            alignment: Alignment.topCenter,
+                            fit: BoxFit.cover,
+                            height: 100,
+                            width: 85,
+                          ),
                   ),
                   const SizedBox(height: 10)
                 ],

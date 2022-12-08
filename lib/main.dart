@@ -31,6 +31,7 @@ class MyApp extends StatelessWidget {
 
     return GetMaterialApp(
         title: 'Flames',
+        debugShowCheckedModeBanner: false,
         theme: Themeing.lightTheme,
         home: SafeArea(
           child: Scaffold(
@@ -166,6 +167,7 @@ class ChatScreen extends StatelessWidget {
                     likes: _recentUsers[index].likes,
                     userPicUrl: _recentUsers[index].userPicUrl,
                     userName: _recentUsers[index].userName,
+                    isLikeCard: _recentUsers[index].isLikeCard,
                   );
                 },
               ),
